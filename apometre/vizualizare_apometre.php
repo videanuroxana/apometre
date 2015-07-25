@@ -30,9 +30,9 @@ $dbUser = mysqli_fetch_assoc($queryUser);
 //die();
 //de lene am pus intr-o variabila $uid ce mi-a intors mysql_fetch_assoc cu privire la querry-ul dat mai devreme
 $uid = $dbUser['id'];
-echo $uid;
-die();
-$sql = 'SELECT * FROM records WHERE  ';
+//echo $uid;
+
+$sql = "SELECT * FROM records WHERE user_id = ".$uid."";
 $query = mysqli_query($conn,$sql);
 
 
