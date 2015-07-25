@@ -2,10 +2,10 @@
 
 require_once 'config.php';
 
-if (!isset($_SESSION["user"]) || $_SESSION["user"]==""){
+if (!isset($_SESSION["loggedinUser"]) || $_SESSION["loggedinUser"]==""){
 	header("location:login.html");
 }
-echo "Bine ai venit ".$_SESSION["user"];
+echo "Bine ai venit ".$_SESSION["loggedinUser"];
 
 ?>
 
@@ -13,7 +13,7 @@ echo "Bine ai venit ".$_SESSION["user"];
 
 	<body>
 		
-		<form action="apometre.php" method="post">
+		<form action="apometre_procesare.php" method="post">
 
 			<table>
 				<tr>
