@@ -1,2 +1,2 @@
 # apometre
-php learn projct
+php learn project
