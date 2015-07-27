@@ -41,7 +41,7 @@ function checkLogin(){
 	
 	$u = $_SESSION["loggedinUser"];
 	if (!isset($u) || $u==""){
-		header("location:login.html");
+		header("location:login_form.php");
 	}
 	
 	

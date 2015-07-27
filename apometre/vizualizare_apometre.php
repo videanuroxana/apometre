@@ -24,7 +24,7 @@ if (mysqli_num_rows($query)==0){
 else{
 	
 	require_once 'header.php';
-	echo "<tr><td>";
+	echo "<tr><td> <a href='logout.php'>Logout</a>";
 			
 	
 	while ($row = mysqli_fetch_assoc($query))
