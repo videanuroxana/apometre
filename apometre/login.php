@@ -9,7 +9,7 @@ fisier de prelucrare a datelor din login.html
  */
 
 require_once('config.php');
-require_once('functions.php');
+
 
 $user = $_POST["user"];
 $password = $_POST["password"];

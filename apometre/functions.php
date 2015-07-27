@@ -1,6 +1,11 @@
 <?php
 
 
+/**
+ * getUserIdByUsername
+ * returns the user id for a specified user name
+ * @param string $username - the user name that you want to find id for
+ */
 
 function getUserIdByUsername($username){
 	
@@ -27,5 +32,19 @@ function getUserIdByUsername($username){
 	return $uid;
 }
 
+
+/**
+ * check if the user is logged in or not
+ */
+
+function checkLogin(){
+	
+	$u = $_SESSION["loggedinUser"];
+	if (!isset($u) || $u==""){
+		header("location:login.html");
+	}
+	
+	
+}
 
 ?>

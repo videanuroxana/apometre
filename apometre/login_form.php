@@ -1,16 +1,10 @@
+<?php
+require_once("header.php");
+?>
 
-<!-- formular de login cu user si parola 
--->
+<tr>
 
-<html>
-
-
-	<head>
-		<title>Login</title>
-	</head>
-
-	<body>
-		
+	<td align="center">
 		<form action="login.php" method="post">
 
 		<table>
@@ -34,7 +28,13 @@
 			</tr>
 		</table>
 		</form>
+	</td>
+</tr>
+			
+			
+<?php
+require_once("footer.php");
+?>
 
-	</body>
-
-</html>
+		
+		

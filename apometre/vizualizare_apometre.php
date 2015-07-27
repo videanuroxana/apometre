@@ -9,11 +9,8 @@ require_once('config.php');
 //daca nu e setata, inseamna a apelat direct pagina si-l trimit la login.php ca nu stiu ce apometre sa-i arat
 
 
+checkLogin();
 $u = $_SESSION["loggedinUser"];
-if (!isset($u) || $u==""){
-	header("location:login.html");
-}
-
 $uid = getUserIdByUsername($u);
 
 
@@ -25,6 +22,11 @@ if (mysqli_num_rows($query)==0){
 	echo "Nu ai nicio inregistrare. Du-te <a href='apometre.php'>aici</a> pentru a adauga noi inregistrari ";
 }
 else{
+	
+	require_once 'header.php';
+	echo "<tr><td>";
+			
+	
 	while ($row = mysqli_fetch_assoc($query))
 	{
 		echo" An:".$row['an']."<br> 
@@ -36,6 +38,9 @@ else{
 
 
 	}
+	echo "</td></tr>";
+	require_once 'footer.php';
+	
 }
 
 

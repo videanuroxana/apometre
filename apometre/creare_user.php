@@ -2,6 +2,10 @@
 
 require_once('config.php');
 
+
+
+
+
 //preluare date din creare_user.html
 $username = $_POST["username"];
 $password = $_POST["password"];

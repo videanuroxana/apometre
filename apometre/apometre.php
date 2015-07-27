@@ -1,70 +1,65 @@
-<?php 
+<?php
 
-require_once 'config.php';
+require_once('config.php');
+checkLogin();
 
-if (!isset($_SESSION["loggedinUser"]) || $_SESSION["loggedinUser"]==""){
-	header("location:login.html");
+//preluare date din apometre.html
+$an = $_POST["an"];
+$luna = $_POST["luna"];
+$apaReceBaie = $_POST["apaReceBaie"];
+$apaCaldaBaie = $_POST["apaCaldaBaie"];
+$apaReceBucatarie = $_POST["apaReceBucatarie"];
+$apaCaldaBucatarie = $_POST["apaCaldaBucatarie"];
+
+
+//vreau sa prelucrez datele primite din apometre.html (1.sa le bag in baza de date si 2. sa ii trimit un mesaj utilizatorului ca au fost introduse si sa le vada)
+
+//1. vreau sa inserez in baza de date apometre, in tabelul records, valorile luate din formularul html apometre.html si preluate de apometre.php
+//mai intai sa le fac validarea
+/*if (!isset($an)||!isset($luna)||!isset($apaReceBaie)||!isset($apaCaldaBaie)||!isset($apaReceBucatarie)||
+!isset($apaCaldaBucatarie)||!is_string($an)||!is_string($luna)||!is_double($apaReceBaie)||
+!is_double($apaCaldaBaie)||!is_double($apaReceBucatarie)||!is_double($apaCaldaBucatarie)) {
+	echo 'Nu ai introdus toate campurile.<br>
+		  Apasa < a href="apometre.html">aici</a> pentru a te intoarce la pagina anterioara';
 }
-echo "Bine ai venit ".$_SESSION["loggedinUser"];
+
+else{
+*/	
+
+	$u = $_SESSION["loggedinUser"];
+	
+	/* a fost inlocuita cu versiunea cu functie de mai jos  
+	//vreau sa aflu id-ul userului logat (din tabelul users) pe baza username-ului aflat prin citirea variabilei de sesiune
+	$sqlUser = "SELECT id FROM users WHERE username='".$u."'";
+	$queryUser = mysqli_query($conn,$sqlUser);	
+	$dbUser = mysqli_fetch_assoc($queryUser);	
+	$uid = $dbUser['id'];
+	*/
+	
+	$uid = getUserIdByUsername($u);
+	
+	$inserareSql="INSERT INTO records (user_id,an,luna,apa_rece_baie,apa_calda_baie,apa_rece_bucatarie,apa_calda_bucatarie) 
+VALUES ($uid,$an,$luna,$apaReceBaie,$apaCaldaBaie,$apaReceBucatarie,$apaCaldaBucatarie)";
+
+	echo $inserareSql.'<br>';
+
+	$query = mysqli_query($conn,$inserareSql);
+
+
+//2. sa ii trimit un mesaj utilizatorului ca au fost introduse si sa le vada in vizualizare.php
+
+
+	if ($query==false){
+	echo 'Eroarea este'.mysqli_error($conn);
+	die("nu am putut sa execut query-ul");
+	}
+	else{ 
+	echo 'Va multumim.<br>
+	   Datele au fost introduse cu succes in baza de date.<br>
+	   Pentru vizualizare apasati <a href="vizualizare_apometre.php">aici</a>';
+	}
+
+//}
+
 
 ?>
-
-<html>
-
-	<body>
-		
-		<form action="apometre_procesare.php" method="post">
-
-			<table>
-				<tr>
-					<td>An: </td>
-					<td><input type="text" name="an" value="" size="4" maxlength="4"></input></td>
-				</tr>
-			<tr><td>Luna: </td>
-			    <td><select name="luna">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>	
-				  </select>
-			    </td>
-			</tr>
-			</table>
-			<p>Introdu indecsii:</p>
-			<table>
-				<tr> 
-					<td rowspan="2" align="center">Baie</td>
-					<td>Apa calda<input type="text" name="apaCaldaBaie" value=""></input></td>
-
-				</tr>
-				
-				<tr> <td>Apa rece<input type="text" name="apaReceBaie" value=""></input></td>
-
-			
-		
-				<tr> 
-					<td rowspan="2" align="center">Bucatarie</td>
-					<td>Apa calda<input type="text" name="apaCaldaBucatarie" value=""/>  </td>
-
-				</tr>
-				
-				<tr> <td>Apa rece<input type="text" name="apaReceBucatarie" value=""/></td>
-
-			</table>
-			
-		
-				<input type="submit" value="Trimite valori"></input>	
-			
-		</form>
-
-	</body>
-
-</html>
