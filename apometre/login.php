@@ -12,10 +12,12 @@ require_once('config.php');
 
 
 $user = $_POST["user"];
-$password = $_POST["password"];
+
+
+$md5Pass = md5($_POST["password"]);
 
 //formam interogarea asa cum ii place lui sql, adica ii trimitem un string cu o instructiune sql valida
-$sqlString = "SELECT * FROM users WHERE username='".$user."' AND password='".$password."'";
+$sqlString = "SELECT * FROM users WHERE username='".$user."' AND password='".$md5Pass."'";
 //SELECT * FROM users WHERE username='adrian' AND password='roxana';
 //odata stringul format il trimitem serverului pentru interpretare
 $query = mysqli_query($conn,$sqlString);

@@ -82,7 +82,7 @@ if (!isset($scara)){
 	$errors = $errors."Scara nu este setata!<br>";
 }
  
-if (!isset($etaj)){
+if (!isset($etaj) || $etaj=="-100"){
 	$errors = $errors."Etajul nu este setat!<br>";
 }
 
@@ -97,8 +97,10 @@ if($errors!=""){
 }
 
 
+$md5Password = md5($password);
+
 $inserareSql="INSERT INTO users(username,password,nume,prenume,mail,judet,localitate,sector,bloc,scara,etaj,apartament) 
-VALUES ('".$username."','$password','$nume','$prenume','$mail','$judet','$localitate',$sector,'$bloc','$scara',$etaj,$apartament)";
+VALUES ('".$username."','$md5Password','$nume','$prenume','$mail','$judet','$localitate',$sector,'$bloc','$scara',$etaj,$apartament)";
 
 	$query = mysqli_query($conn,$inserareSql);
 //2. sa ii trimit un mesaj utilizatorului ca au fost introduse si sa le vada in vizualizare_user.php

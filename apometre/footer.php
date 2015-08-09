@@ -1,6 +1,6 @@
 <tr>
 				<td align="right">
-					Apometre v 0.0.1
+					Apometre v <?php echo APP_VERSION;?>
 				</td>
 			</tr>		
 		

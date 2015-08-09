@@ -1,18 +1,11 @@
 <?php 
-
 require_once 'config.php';
 checkLogin();
-
-
-echo "Bine ai venit ".$_SESSION["loggedinUser"];
-
+require_once ('header.php');
 ?>
-
-<html>
-
-	<body>
-		
-		<form action="apometre.php" method="POST">
+<tr>
+	<td>
+		<form action="add_record.php" method="POST">
 
 			<table>
 				<tr>
@@ -21,18 +14,12 @@ echo "Bine ai venit ".$_SESSION["loggedinUser"];
 				</tr>
 			<tr><td>Luna: </td>
 			    <td><select name="luna">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>	
+			    	<option value="0">-- SELECT --</option>
+			    	<?php 
+			    		for ($i=1; $i<13;$i++){
+			    			echo '<option value="'.$i.'">'.$months[$i].'</option>';
+			    		}	
+					?>
 				  </select>
 			    </td>
 			</tr>
@@ -63,7 +50,9 @@ echo "Bine ai venit ".$_SESSION["loggedinUser"];
 				<input type="submit" value="Trimite valori"></input>	
 			
 		</form>
+		</td>
+</tr>
+<?php 
+require_once('footer.php');
+?>
 
-	</body>
-
-</html>
