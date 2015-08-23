@@ -1,5 +1,10 @@
+Version 1.0.1
+	23 08 2015
+	-added the posibility to create customised rooms
+
 Version 1.0.0 
 	09 08 2015
 	- added changeLog file
 	- added sql updates tracker
 	- added md5 passwords
+	

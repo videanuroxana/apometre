@@ -13,7 +13,6 @@ checkLogin();
 $u = $_SESSION["loggedinUser"];
 $uid = getUserIdByUsername($u);
 
-
 $sql = "SELECT * FROM records WHERE user_id = ".$uid."";
 $query = mysqli_query($conn,$sql);
 

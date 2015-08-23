@@ -31,8 +31,10 @@ if ($counter ==1){
 	//toate variabilele normale dintr-un script sunt distruse la sf scriptului (s-a terminat de executat fisierul ? >), mai putin cele de sesiune, care sunt distruse de user intentionat la logout, fie dupa ce expira un timeout pe server-setari de-ale php-ului
 	//variabilele de sesiune pt 2 useri diferiti au valori diferite; desi avem aceeasi loggedinUser, pt mine are o valoare si pt alt utilizator are o alta; daca s-ar loga 2, ar ramene apometrele ultimului logat si le-ar vedea toti doar pe alea; 
 	//cu mecanismul de session se rezolva asta
-	$_SESSION["loggedinUser"] = $user;
-	header("location:vizualizare_apometre.php"); //redirctioneaza direct, fara a href si interventie manuala din partea userului
+	$row = mysqli_fetch_assoc($query);
+	$_SESSION["loggedinUser"] = $row['username'];
+	$_SESSION["loggedinUserId"] = $row['id'];
+	header("location:view_records.php"); //redirectioneaza direct, fara a href si interventie manuala din partea userului
 }
 else{
 	echo "User/parola sunt incorecte<br>";

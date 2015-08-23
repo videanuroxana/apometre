@@ -7,45 +7,52 @@ require_once ('header.php');
 	<td>
 		<form action="add_record.php" method="POST">
 
-			<table>
+			<table border="1">
 				<tr>
 					<td>An: </td>
 					<td><input type="text" name="an" value="" size="4" maxlength="4"></input></td>
 				</tr>
-			<tr><td>Luna: </td>
-			    <td><select name="luna">
-			    	<option value="0">-- SELECT --</option>
-			    	<?php 
-			    		for ($i=1; $i<13;$i++){
-			    			echo '<option value="'.$i.'">'.$months[$i].'</option>';
-			    		}	
-					?>
-				  </select>
-			    </td>
-			</tr>
-			</table>
-			<p>Introdu indecsii:</p>
-			<table>
-				<tr> 
-					<td rowspan="2" align="center">Baie</td>
-					<td>Apa calda<input type="text" name="apaCaldaBaie" value=""></input></td>
-
+				<tr>
+					<td>Luna: </td>
+			    	<td>
+			    		<select name="luna">
+			    			<option value="0">-- SELECT --</option>
+			    			<?php 
+					    		for ($i=1; $i<13;$i++){
+					    			echo '<option value="'.$i.'">'.$months[$i].'</option>';
+					    		}	
+							?>
+				  		</select>
+			   		</td>
 				</tr>
-				
-				<tr> <td>Apa rece<input type="text" name="apaReceBaie" value=""></input></td>
-
-			
-		
-				<tr> 
-					<td rowspan="2" align="center">Bucatarie</td>
-					<td>Apa calda<input type="text" name="apaCaldaBucatarie" value=""/>  </td>
-
+				<tr>
+					<td>Room:</td>
+					<td>
+						<select name="roomId">
+							<option value="0">--SELECT--</option>
+							<?php 
+								$uid = $_SESSION["loggedinUserId"];
+								$sql = "SELECT * FROM rooms WHERE user_id ='".$uid."'";
+								$query = mysqli_query($conn, $sql);
+								while($row=mysqli_fetch_assoc($query)){
+									echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+								}		
+							?>
+						</select>
+					</td>
 				</tr>
-				
-				<tr> <td>Apa rece<input type="text" name="apaReceBucatarie" value=""/></td>
-
-			</table>
-			
+				<tr>
+					<td>Apa rece: </td>
+					<td>
+						<input type="text" name="apaRece" value="" size="15" maxlength="40" placeholder="5.2"/>
+					</td>
+				</tr>
+				<tr>
+					<td>Apa calda: </td><td><input type="text" name="apaCalda" value="" size="15" maxlength="40" placeholder="5.2"/>
+					</td>
+				</tr>
+					
+			</table>		
 		
 				<input type="submit" value="Trimite valori"></input>	
 			

@@ -1,0 +1,3 @@
+-de facut view_rooms (de vazut ce camere definite are utilizatorul);
+-de facut edit rooms (daca a scris gresit utilizatorul numele camerei sa-l poata modifica;
+

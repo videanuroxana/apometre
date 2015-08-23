@@ -6,10 +6,9 @@ checkLogin();
 //preluare date din apometre.html
 $an = $_POST["an"];
 $luna = $_POST["luna"];
-$apaReceBaie = $_POST["apaReceBaie"];
-$apaCaldaBaie = $_POST["apaCaldaBaie"];
-$apaReceBucatarie = $_POST["apaReceBucatarie"];
-$apaCaldaBucatarie = $_POST["apaCaldaBucatarie"];
+$roomId = $_POST["roomId"];
+$apaRece = $_POST["apaRece"];
+$apaCalda = $_POST["apaCalda"];
 
 
 //vreau sa prelucrez datele primite din apometre.html (1.sa le bag in baza de date si 2. sa ii trimit un mesaj utilizatorului ca au fost introduse si sa le vada)
@@ -27,21 +26,10 @@ else{
 */	
 
 	$u = $_SESSION["loggedinUser"];
+	$uid = $_SESSION["loggedinUserId"];
 	
-	/* a fost inlocuita cu versiunea cu functie de mai jos  
-	//vreau sa aflu id-ul userului logat (din tabelul users) pe baza username-ului aflat prin citirea variabilei de sesiune
-	$sqlUser = "SELECT id FROM users WHERE username='".$u."'";
-	$queryUser = mysqli_query($conn,$sqlUser);	
-	$dbUser = mysqli_fetch_assoc($queryUser);	
-	$uid = $dbUser['id'];
-	*/
 	
-	$uid = getUserIdByUsername($u);
-	
-	$inserareSql="INSERT INTO records (user_id,an,luna,apa_rece_baie,apa_calda_baie,apa_rece_bucatarie,apa_calda_bucatarie) 
-VALUES ($uid,$an,$luna,$apaReceBaie,$apaCaldaBaie,$apaReceBucatarie,$apaCaldaBucatarie)";
-
-	echo $inserareSql.'<br>';
+	$inserareSql="INSERT INTO records (user_id,an,luna,apa_rece,apa_calda,room_id) VALUES ($uid,$an,$luna,$apaRece,$apaCalda,$roomId)";
 
 	$query = mysqli_query($conn,$inserareSql);
 
@@ -56,7 +44,7 @@ VALUES ($uid,$an,$luna,$apaReceBaie,$apaCaldaBaie,$apaReceBucatarie,$apaCaldaBuc
 	else{ 
 	echo 'Va multumim.<br>
 	   Datele au fost introduse cu succes in baza de date.<br>
-	   Pentru vizualizare apasati <a href="vizualizare_apometre.php">aici</a>';
+	   Pentru vizualizare apasati <a href="view_records.php">aici</a>';
 	}
 
 //}
