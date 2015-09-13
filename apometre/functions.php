@@ -39,8 +39,9 @@ function getUserIdByUsername($username){
 
 function checkLogin(){
 	
-	$u = $_SESSION["loggedinUser"];
-	if (!isset($u) || $u==""){
+	$isLoggedIn = $_SESSION["loggedIn"];
+	
+	if (!isset($isLoggedIn) || $isLoggedIn == false){
 		header("location:login_form.php");
 	}
 	

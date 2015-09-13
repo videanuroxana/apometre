@@ -1,6 +1,7 @@
 <?php
 
 require_once('config.php');
+require_once 'header.php';
 
 //deoarece pagina asta poate fi apelata direct din browser prin //localhost/apometre/vizualizare_apometre.php si userul ar veni direct, fara sa stiu cine e,
 // tb sa ma asigur ca a trecut prin login.php, ca-l pot identifica pentru a stii ce apometre sa-i arat
@@ -8,38 +9,44 @@ require_once('config.php');
 //daca e setata, inseamna ca trecut, user si parola sunt corecte si are voie sa vada pagina
 //daca nu e setata, inseamna a apelat direct pagina si-l trimit la login.php ca nu stiu ce apometre sa-i arat
 
-
 checkLogin();
-$u = $_SESSION["loggedinUser"];
-$uid = getUserIdByUsername($u);
 
-$sql = "SELECT * FROM records WHERE user_id = ".$uid."";
+$uid = $_SESSION["loggedinUserId"];
+
+$sql = "SELECT records.*,rooms.name FROM records LEFT JOIN rooms ON records.room_id=rooms.id WHERE records.user_id = ".$uid."";
 $query = mysqli_query($conn,$sql);
 
+echo "<tr><td>";
 
 if (mysqli_num_rows($query)==0){
-	echo "Nu ai nicio inregistrare. Du-te <a href='apometre.php'>aici</a> pentru a adauga noi inregistrari ";
+	echo "Nu ai nicio inregistrare. Du-te <a href='add_record_form.php'>aici</a> pentru a adauga noi inregistrari ";
 }
 else{
 	
-	require_once 'header.php';
-	echo "<tr><td> <a href='logout.php'>Logout</a>";
-			
+	?>
+	<table border="1">
+		<tr>
+			<td>Data</td>
+			<td>Apa rece</td>
+			<td>Apa calda</td>
+			<td>Camera</td>
+		</tr>
+	<?php 
+	while ($row = mysqli_fetch_assoc($query)){
+
 	
-	while ($row = mysqli_fetch_assoc($query))
-	{
-		echo" An:".$row['an']."<br> 
-	      Luna:".$row['luna']."<br>
-	      Apa rece baie:".$row['apa_rece_baie']."<br> 
-	      Apa calda baie:".$row['apa_calda_baie']."<br> 
-	      Apa rece bucatarie:".$row['apa_rece_bucatarie']."<br>
-	      Apa calda bucatarie:".$row['apa_calda_bucatarie']."<br><br>";
-
-
+		
+		echo "<tr>";
+			echo "<td>".$row["an"]."-".$row["luna"]."</td>";
+			echo "<td>".$row["apa_rece"]."</td>";
+			echo "<td>".$row["apa_calda"]."</td>";
+			echo "<td>".$row["name"]."</td>";						
+		echo "</tr>";
+		
 	}
-	echo "</td></tr>";
-	require_once 'footer.php';
-	
+	echo "</table>";
+echo "</td></tr>";
+require_once 'footer.php';
 }
 
 

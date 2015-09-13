@@ -32,7 +32,9 @@ if ($counter ==1){
 	//variabilele de sesiune pt 2 useri diferiti au valori diferite; desi avem aceeasi loggedinUser, pt mine are o valoare si pt alt utilizator are o alta; daca s-ar loga 2, ar ramene apometrele ultimului logat si le-ar vedea toti doar pe alea; 
 	//cu mecanismul de session se rezolva asta
 	$row = mysqli_fetch_assoc($query);
-	$_SESSION["loggedinUser"] = $row['username'];
+	$_SESSION["loggedIn"] = true;
+	
+	
 	$_SESSION["loggedinUserId"] = $row['id'];
 	header("location:view_records.php"); //redirectioneaza direct, fara a href si interventie manuala din partea userului
 }
