@@ -1,7 +1,9 @@
 Version 1.0.2
-	13 09 2015
+	xx 09 2015
 	- fixed view records page
-
+	- added edit functionality for rooms
+	
+	
 Version 1.0.1
 	23 08 2015
 	-added the posibility to create customised rooms

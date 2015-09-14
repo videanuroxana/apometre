@@ -48,4 +48,25 @@ function checkLogin(){
 	
 }
 
+
+function getRoomNameById($roomId){
+	
+	
+	global $conn;
+	$sql = "SELECT name FROM rooms WHERE id='".$roomId."'";
+	$q = mysqli_query($conn, $sql);
+	
+	if ($q!=false){		
+		$rez = mysqli_fetch_assoc($q);		
+		return $rez["name"];
+	}
+	
+	
+	echo mysqli_error($conn);
+	
+	
+}
+
+
+
 ?>
