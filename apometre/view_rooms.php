@@ -8,7 +8,7 @@ echo "<tr><td>";
 
 
 $userId = $_SESSION["loggedinUserId"];
-$sqlRoom = "SELECT id,name FROM rooms WHERE user_id = '".$userId."'";
+$sqlRoom = "SELECT id,name FROM rooms WHERE user_id = '".$userId."' AND deleted=0";
 $queryRoom = mysqli_query($conn, $sqlRoom);
 
 
@@ -28,10 +28,6 @@ while($row = mysqli_fetch_assoc($queryRoom)){
 	echo "</tr>";
 }
 echo "</table>";
-
-
-
-
 
 
 

@@ -1,0 +1,1 @@
+ALTER TABLE `rooms` ADD `deleted` BOOLEAN NOT NULL DEFAULT FALSE AFTER `user_id`;
