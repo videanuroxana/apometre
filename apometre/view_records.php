@@ -1,6 +1,4 @@
 <?php
-
-require_once('config.php');
 require_once 'header.php';
 
 //deoarece pagina asta poate fi apelata direct din browser prin //localhost/apometre/vizualizare_apometre.php si userul ar veni direct, fara sa stiu cine e,
@@ -13,7 +11,7 @@ checkLogin();
 
 $uid = $_SESSION["loggedinUserId"];
 
-$sql = "SELECT records.*,rooms.name FROM records LEFT JOIN rooms ON records.room_id=rooms.id WHERE records.user_id = ".$uid."";
+$sql = "SELECT records.*,rooms.name as roomName FROM records LEFT JOIN rooms ON records.room_id=rooms.id WHERE records.user_id = ".$uid."";
 $query = mysqli_query($conn,$sql);
 
 echo "<tr><td>";
@@ -40,7 +38,7 @@ else{
 			echo "<td>".$row["an"]."-".$row["luna"]."</td>";
 			echo "<td>".$row["apa_rece"]."</td>";
 			echo "<td>".$row["apa_calda"]."</td>";
-			echo "<td>".$row["name"]."</td>";						
+			echo "<td>".$row["roomName"]."</td>";						
 		echo "</tr>";
 		
 	}

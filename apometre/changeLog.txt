@@ -1,3 +1,12 @@
+
+Version 1.0.3
+	02 05 2016
+	- added protection for deleting a room not belonging to current user (hack prevention)
+
+
+
+
+
 Version 1.0.2
 	xx 09 2015
 	- fixed view records page

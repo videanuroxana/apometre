@@ -1,3 +1,10 @@
+<?php 
+
+require_once("config.php");
+
+?>
+
+
 <html>
 	<head>
 		<title>Apometre</title>
@@ -12,8 +19,9 @@
 
 					<a href="add_record_form.php">[+] Add Record</a> | 
 					<a href="creare_user_form.php">[+] Add User</a> | 
-					<a href="view_rooms.php">View Room</a> |
-					<a href="view_records.php"> View Record</a> | 
+					<a href="add_room_form.php">[+] Add Room</a> |
+					<a href="view_rooms.php">View Rooms</a> |
+					<a href="view_records.php"> View Records</a> | 
 					<a href="logout.php"> Logout</a>
 
 

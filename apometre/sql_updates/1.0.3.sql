@@ -1,0 +1,1 @@
+ALTER TABLE `rooms` ADD CONSTRAINT `rooms_users_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `apometre`.`rooms`(`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;

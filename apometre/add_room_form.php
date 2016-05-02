@@ -1,7 +1,6 @@
 <?php
-require_once 'config.php';
-checkLogin();
 require_once ('header.php');
+checkLogin();
 ?>
 <tr>
 	<td>
