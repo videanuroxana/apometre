@@ -3,7 +3,7 @@ require_once 'config.php';
 checkLogin();
 require_once ('header.php');
 
-$roomId = $_GET['rid'];
+$roomId = $_GET['room_id'];
 $roomName = getRoomNameById($roomId);
 
 ?>
@@ -16,7 +16,7 @@ $roomName = getRoomNameById($roomId);
 				<td><input type="text" name="roomName"  value="<?php echo $roomName;?>"/></td>
 			</tr>
 			
-			<input type="hidden" name="roomId"  value="<?php echo $roomId;?>"/>
+			
 			
 			
 			<tr>
@@ -26,6 +26,7 @@ $roomName = getRoomNameById($roomId);
 			
 		
 		</table>
+		<input type="hidden" name="roomId"  value="<?php echo $roomId;?>"/>
 		</form>
 	
 	

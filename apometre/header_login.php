@@ -1,3 +1,9 @@
+<?php 
+
+require_once("config.php");
+
+?>
+
 <html>
 	<head>
 		<title>Water meter login</title>

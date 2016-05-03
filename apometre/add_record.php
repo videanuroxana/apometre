@@ -25,7 +25,7 @@ $apaCalda = $_POST["apaCalda"];
 else{
 */	
 
-	$u = $_SESSION["loggedinUser"];
+	
 	$uid = $_SESSION["loggedinUserId"];
 	
 	
