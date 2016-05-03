@@ -8,6 +8,8 @@ echo "<tr><td>";
 
 
 $userId = $_SESSION["loggedinUserId"];
+
+//get all non deleted rooms for current(session) user
 $sqlRoom = "SELECT id,name FROM rooms WHERE user_id = '".$userId."' AND deleted=0";
 
 $queryRoom = mysqli_query($conn, $sqlRoom);

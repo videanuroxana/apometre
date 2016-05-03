@@ -11,6 +11,8 @@ checkLogin();
 
 $uid = $_SESSION["loggedinUserId"];
 
+
+//get all records for current user
 $sql = "SELECT records.*,rooms.name as roomName FROM records LEFT JOIN rooms ON records.room_id=rooms.id WHERE records.user_id = ".$uid."";
 $query = mysqli_query($conn,$sql);
 
@@ -30,10 +32,7 @@ else{
 			<td>Camera</td>
 		</tr>
 	<?php 
-	while ($row = mysqli_fetch_assoc($query)){
-
-	
-		
+	while ($row = mysqli_fetch_assoc($query)){		
 		echo "<tr>";
 			echo "<td>".$row["an"]."-".$row["luna"]."</td>";
 			echo "<td>".$row["apa_rece"]."</td>";

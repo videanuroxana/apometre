@@ -5,9 +5,9 @@ checkLogin();
 $roomId = $_GET["room_id"];
 
 
-//verificam daca nu cumva vrea sa stearga camerele altora. Validam daca roomId-ul trimis prin GET are coloana user_id din tabelul rooms egala cu user_id-ul din sesiune
-
-
+/* verificam daca nu cumva vrea sa stearga camerele altora.  
+ * Validam daca roomId-ul trimis prin GET are coloana user_id din tabelul rooms egala cu user_id-ul din sesiune
+ */
 $sql1 = " SELECT * FROM rooms WHERE id='".$roomId."'";
 $query = mysqli_query($conn,$sql1);
 
@@ -15,9 +15,10 @@ $rez = mysqli_fetch_assoc($query);
 $dbUserId = $rez['user_id'];
 
 
-//daca userul din db nu este egal cu cel din sesiune, il retrimitem la view_records.php
+//daca userul din db nu este egal cu cel din sesiune, il retrimitem la view_records.php, fara sa mai stergem camera
 if ($dbUserId!=$_SESSION["loggedinUserId"]){
 	header("location:view_records.php");
+	exit();
 }
 
 $sql = "UPDATE rooms SET deleted=1 WHERE id='".$roomId."'";
